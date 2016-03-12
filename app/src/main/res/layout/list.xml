@@ -21,6 +21,7 @@
         android:layout_alignTop="@+id/thumbnail"
         android:layout_toRightOf="@+id/thumbnail"
         android:textSize="@dimen/title"
+        android:textColor="@color/genre"
         android:textStyle="bold" />
 
     <!-- Realisateur -->
@@ -31,6 +32,7 @@
         android:layout_below="@id/title"
         android:layout_marginTop="1dip"
         android:layout_toRightOf="@+id/thumbnail"
+        android:textColor="@color/genre"
         android:textSize="@dimen/rating" />
 
     <!-- Genre -->
