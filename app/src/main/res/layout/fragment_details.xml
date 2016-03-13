@@ -1,27 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 android:layout_width="fill_parent"
-android:layout_height="wrap_content"
+android:layout_height="fill_parent"
 android:background="@drawable/list_row_selector"
 android:padding="8dp" >
 
-<!-- Thumbnail Image -->
-<com.android.volley.toolbox.NetworkImageView
-    android:id="@+id/thumbnail"
-    android:layout_width="80dp"
-    android:layout_height="80dp"
-    android:layout_alignParentLeft="true"
-    android:layout_marginRight="8dp" />
-
-<!-- Synopsis -->
-    <TextView
-        android:layout_width="191dp"
+    <Button
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="detailText"
-        android:id="@+id/detailText"
-        android:padding="2dp"
-        android:textAlignment="center"
-        android:layout_weight="0.32" />
+        android:text="Retour"
+        android:id="@+id/buttonPrevious"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:background="#00f29d"
+        android:textColor="#fff"
+        android:textStyle="bold" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/scrollView"
+        android:fillViewport="false"
+        android:layout_above="@+id/buttonPrevious">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.android.volley.toolbox.NetworkImageView
+                android:id="@+id/thumbnailDetails"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true"
+                android:padding="8dp" />
+
+            <TextView
+                android:id="@+id/textViewTitre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/title"
+                android:textColor="@color/genre"
+                android:textStyle="bold"
+                android:text="Titre"
+                android:layout_alignParentTop="true"
+                android:layout_toEndOf="@+id/thumbnailDetails"
+                android:padding="8dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Date"
+                android:id="@+id/textViewDate"
+                android:layout_below="@+id/textViewTitre"
+                android:layout_toEndOf="@+id/thumbnailDetails"
+                android:layout_marginStart="8dp"
+                android:padding="8dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:id="@+id/detailText"
+                android:padding="8dp"
+                android:textAlignment="center"
+                android:layout_marginTop="200dp"
+                android:text="Synopsis"
+                android:layout_alignParentStart="true" />
+
+            <HorizontalScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/horizontalScrollView"
+                android:layout_below="@+id/detailText" >
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <com.android.volley.toolbox.NetworkImageView
+                        android:id="@+id/thumbnailMedias0"
+                        android:layout_width="wrap_content"
+                        android:layout_height="150dp"
+                        android:padding="8dp"/>
+                    <com.android.volley.toolbox.NetworkImageView
+                        android:id="@+id/thumbnailMedias1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="150dp"
+                        android:padding="8dp"/>
+                    <com.android.volley.toolbox.NetworkImageView
+                        android:id="@+id/thumbnailMedias2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="150dp"
+                        android:padding="8dp"/>
+                    <com.android.volley.toolbox.NetworkImageView
+                        android:id="@+id/thumbnailMedias3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="150dp"
+                        android:padding="8dp"/>
+                </LinearLayout>
+            </HorizontalScrollView>
+
+
+        </RelativeLayout>
+    </ScrollView>
 
 </RelativeLayout>

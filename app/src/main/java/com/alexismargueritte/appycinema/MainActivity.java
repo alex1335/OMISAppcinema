@@ -1,5 +1,7 @@
 package com.alexismargueritte.appycinema;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,10 +9,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.ViewFlipper;
 
 import com.alexismargueritte.appycinema.adapter.CustomListAdapter;
 import com.alexismargueritte.appycinema.app.AppController;
@@ -30,7 +35,7 @@ import java.util.List;
 
 import com.android.volley.toolbox.NetworkImageView;
 
-public class MainActivity extends AppCompatActivity implements ListFragment.OnItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements ListFragment.OnItemSelectedListener, View.OnClickListener {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
@@ -47,6 +52,15 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnIt
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        final ViewFlipper flippy = (ViewFlipper) findViewById(R.id.view_flipper);
+
+        Button back = (Button) findViewById(R.id.buttonPrevious);
+        back.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                flippy.showPrevious();
+            }
+        });
 
         ListView listView = (ListView) findViewById(R.id.list);
         adapter = new CustomListAdapter(this, movieList);
@@ -80,9 +94,17 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnIt
                     }
                 }
 
-                NetworkImageView thumbNailMedias = (NetworkImageView) findViewById(R.id.thumbnailMedias);
-                thumbNailMedias.setImageUrl(m.getPath(listpath,0), imageLoader);
-            }
+                NetworkImageView thumbNailMedias0 = (NetworkImageView) findViewById(R.id.thumbnailMedias0);
+                thumbNailMedias0.setImageUrl(m.getPath(listpath, 0), imageLoader);
+                NetworkImageView thumbNailMedias1 = (NetworkImageView) findViewById(R.id.thumbnailMedias1);
+                thumbNailMedias1.setImageUrl(m.getPath(listpath, 1), imageLoader);
+                NetworkImageView thumbNailMedias2 = (NetworkImageView) findViewById(R.id.thumbnailMedias2);
+                thumbNailMedias2.setImageUrl(m.getPath(listpath, 2), imageLoader);
+                NetworkImageView thumbNailMedias3 = (NetworkImageView) findViewById(R.id.thumbnailMedias3);
+                thumbNailMedias3.setImageUrl(m.getPath(listpath, 3), imageLoader);
+
+                flippy.showNext();
+        }
         });
 
         pDialog = new ProgressDialog(this);
@@ -115,7 +137,6 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnIt
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
-
                         }
                         adapter.notifyDataSetChanged();
                     }
@@ -182,5 +203,10 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnIt
         if (fragment != null && fragment.isInLayout()) {
             fragment.setText(link);
         }
+    }
+
+    @Override
+    public void onClick(View v) {
+
     }
 }

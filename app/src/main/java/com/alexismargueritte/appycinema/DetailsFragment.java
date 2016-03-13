@@ -9,11 +9,19 @@ import android.widget.TextView;
 
 public class DetailsFragment extends Fragment {
 
+    public DetailsFragment() {
+        // Required empty public constructor
+    }
+
+  @Override
+  public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+  }
+
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
-    return inflater.inflate(R.layout.fragment_details,
-        container, false);
+    return inflater.inflate(R.layout.fragment_details,container, false);
   }
 
   public void setText(String item) {

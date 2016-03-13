@@ -4,21 +4,44 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
+    <ViewFlipper
+        android:id="@+id/view_flipper"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+        <!--  Layout 1 for 1st Screen -->
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center"
+        android:orientation="vertical" >
     <fragment
         android:id="@+id/listFragment"
-        android:layout_width="match_parent"
-        android:layout_weight="2"
-        android:layout_height="0dp"
+        android:layout_width="fill_parent"
+        android:layout_weight="1"
+        android:layout_height="fill_parent"
         android:layout_marginTop="0dp"
         class="com.alexismargueritte.appycinema.ListFragment" />
+    </LinearLayout>
+        <!--  Layout 2 for 2nd Screen -->
 
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center"
+        android:orientation="vertical" >
     <fragment
         android:id="@+id/detailFragment"
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_weight="1"
-        android:layout_height="0dp"
+        android:layout_height="fill_parent"
         class="com.alexismargueritte.appycinema.DetailsFragment" >
-        <!-- Preview: layout=@layout/details -->
     </fragment>
 
+    </LinearLayout>
+
+    </ViewFlipper>
+
+
 </LinearLayout>
+
+

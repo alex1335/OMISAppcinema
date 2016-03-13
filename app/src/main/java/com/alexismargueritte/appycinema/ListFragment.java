@@ -11,6 +11,10 @@ public class ListFragment extends Fragment {
 
     private OnItemSelectedListener listener;
 
+    public ListFragment() {
+        // Required empty public constructor
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

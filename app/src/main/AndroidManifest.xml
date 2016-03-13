@@ -21,7 +21,6 @@
         </activity>
         <activity android:name=".ProchainementActivity" />
         <activity android:name=".EventActivity" />
-        <activity android:name=".DetailsActivity"></activity>
     </application>
 
 </manifest>
