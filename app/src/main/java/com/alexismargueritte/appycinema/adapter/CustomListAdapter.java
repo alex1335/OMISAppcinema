@@ -55,7 +55,7 @@ public class CustomListAdapter extends BaseAdapter {
         NetworkImageView thumbNail = (NetworkImageView) convertView
                 .findViewById(R.id.thumbnail);
         TextView title = (TextView) convertView.findViewById(R.id.title);
-        TextView rating = (TextView) convertView.findViewById(R.id.realisateur);
+        TextView director = (TextView) convertView.findViewById(R.id.realisateur);
         TextView genre = (TextView) convertView.findViewById(R.id.genre);
         TextView year = (TextView) convertView.findViewById(R.id.releaseYear);
 
@@ -69,7 +69,7 @@ public class CustomListAdapter extends BaseAdapter {
         title.setText(m.getTitle());
 
         // realisateur
-        rating.setText("de " + String.valueOf(m.getDirector()));
+        director.setText("de " + String.valueOf(m.getDirector()));
 
         // genre
         genre.setText(String.valueOf(m.getGenre()));

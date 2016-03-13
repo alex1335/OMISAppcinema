@@ -24,14 +24,14 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EventActivity extends AppCompatActivity {
+public class ProchainementActivity extends AppCompatActivity {
 
-    private static final String TAG = EventActivity.class.getSimpleName();
+    private static final String TAG = ProchainementActivity.class.getSimpleName();
 
     // Movies json url
     private String eventURL = "http://centrale.corellis.eu/events.json";
     private String filmSeanceURL = "http://centrale.corellis.eu/filmseances.json";
-    private String prochainnementURL = "http://centrale.corellis.eu/prochainement.json";
+    private String prochainementURL = "http://centrale.corellis.eu/prochainement.json";
     private String seancesURL = "http://centrale.corellis.eu/seances.json";
     private ProgressDialog pDialog;
     private List<Movie> movieList = new ArrayList<>();
@@ -40,7 +40,7 @@ public class EventActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_event);
+        setContentView(R.layout.activity_prochainement);
 
         ListView listView = (ListView) findViewById(R.id.list);
         adapter = new CustomListAdapter(this, movieList);
@@ -51,7 +51,7 @@ public class EventActivity extends AppCompatActivity {
         pDialog.show();
 
         // Download from filmSeance
-        JsonArrayRequest filmEvents = new JsonArrayRequest(eventURL,
+        JsonArrayRequest prochainement = new JsonArrayRequest(prochainementURL,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
@@ -61,16 +61,14 @@ public class EventActivity extends AppCompatActivity {
                         // Parsing json
                         for (int i = 0; i < response.length(); i++) {
                             try {
-
                                 JSONObject obj = response.getJSONObject(i);
-                                JSONObject events = obj.getJSONObject("events");
                                 JSONObject films = obj.getJSONObject("films");
                                 Movie movie = new Movie();
-                                movie.setTitle(events.getString("titre"));
-                                movie.setThumbnailUrl(events.getString("affiche"));
+                                movie.setTitle(films.getString("titre"));
+                                movie.setThumbnailUrl(films.getString("affiche"));
                                 movie.setDirector(films.getString("realisateur"));
-                                movie.setYear(events.getString("date_deb"));
-                                movie.setGenre(obj.getString("type"));
+                                movie.setYear(films.getString("annee"));
+                                movie.setGenre(films.getString("genre"));
 
                                 // adding movie to movies array
                                 movieList.add(movie);
@@ -92,7 +90,7 @@ public class EventActivity extends AppCompatActivity {
         });
 
         // Adding request to request queue
-        AppController.getInstance().addToRequestQueue(filmEvents);
+        AppController.getInstance().addToRequestQueue(prochainement);
     }
 
 

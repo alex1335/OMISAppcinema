@@ -2,18 +2,19 @@ package com.alexismargueritte.appycinema.model;
 
 
 public class Movie {
-    private String title, thumbnailUrl, year, realisateur, genre;
+    private String title, thumbnailUrl, year, realisateur, genre, synopsis;
 
     public Movie() {
     }
 
     public Movie(String name, String thumbnailUrl, String year, String realisateur,
-                 String genre) {
+                 String genre, String synopsis) {
         this.title = name;
         this.thumbnailUrl = thumbnailUrl;
         this.year = year;
         this.realisateur = realisateur;
         this.genre = genre;
+        this.synopsis = synopsis;
     }
 
     public String getTitle() {
@@ -54,6 +55,14 @@ public class Movie {
 
     public void setGenre(String genre) {
         this.genre = genre;
+    }
+
+    public String getSynopsis() {
+        return synopsis;
+    }
+
+    public void setSynopsis(String synopsis) {
+        this.synopsis = synopsis;
     }
 
 }
