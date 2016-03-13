@@ -18,6 +18,7 @@ import com.alexismargueritte.appycinema.model.Movie;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.JsonArrayRequest;
 
 import org.json.JSONArray;
@@ -27,6 +28,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.android.volley.toolbox.NetworkImageView;
 
 public class MainActivity extends AppCompatActivity implements ListFragment.OnItemSelectedListener {
 
@@ -54,9 +56,32 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnIt
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Movie m = movieList.get(position);
+                ImageLoader imageLoader = AppController.getInstance().getImageLoader();
+                if (imageLoader == null)
+                    imageLoader = AppController.getInstance().getImageLoader();
                 TextView detailText = (TextView) findViewById(R.id.detailText);
-
+                TextView titreText = (TextView) findViewById(R.id.textViewTitre);
+                TextView dateText = (TextView) findViewById(R.id.textViewDate);
                 detailText.setText(m.getSynopsis());
+                titreText.setText(m.getTitle());
+                dateText.setText(m.getYear());
+                NetworkImageView thumbNailDetails = (NetworkImageView) findViewById(R.id.thumbnailDetails);
+                thumbNailDetails.setImageUrl(m.getThumbnailUrl(), imageLoader);
+
+                JSONArray medias = m.getListMedias();
+                ArrayList listpath = new ArrayList();
+                for (int j=0; j < medias.length(); j++){
+                    try {
+                        JSONObject path = medias.getJSONObject(j);
+                        String path_j = path.getString("path");
+                        listpath.add(path_j);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                NetworkImageView thumbNailMedias = (NetworkImageView) findViewById(R.id.thumbnailMedias);
+                thumbNailMedias.setImageUrl(m.getPath(listpath,0), imageLoader);
             }
         });
 
@@ -75,7 +100,6 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnIt
                         // Parsing json
                         for (int i = 0; i < response.length(); i++) {
                             try {
-
                                 JSONObject obj = response.getJSONObject(i);
                                 Movie movie = new Movie();
                                 movie.setTitle(obj.getString("titre"));
@@ -84,7 +108,7 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnIt
                                 movie.setYear(obj.getString("annee"));
                                 movie.setGenre(obj.getString("genre"));
                                 movie.setSynopsis(obj.getString("synopsis"));
-
+                                movie.setListMedias(obj.getJSONArray("medias"));
                                 // adding movie to movies array
                                 movieList.add(movie);
 
