@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.alexismargueritte.appycinema.adapter.CustomListAdapter;
 import com.alexismargueritte.appycinema.app.AppController;
@@ -28,11 +29,6 @@ public class EventActivity extends AppCompatActivity {
 
     private static final String TAG = EventActivity.class.getSimpleName();
 
-    // Movies json url
-    private String eventURL = "http://centrale.corellis.eu/events.json";
-    private String filmSeanceURL = "http://centrale.corellis.eu/filmseances.json";
-    private String prochainnementURL = "http://centrale.corellis.eu/prochainement.json";
-    private String seancesURL = "http://centrale.corellis.eu/seances.json";
     private ProgressDialog pDialog;
     private List<Movie> movieList = new ArrayList<>();
     private CustomListAdapter adapter;
@@ -51,6 +47,7 @@ public class EventActivity extends AppCompatActivity {
         pDialog.show();
 
         // Download from filmSeance
+        String eventURL = "http://centrale.corellis.eu/events.json";
         JsonArrayRequest filmEvents = new JsonArrayRequest(eventURL,
                 new Response.Listener<JSONArray>() {
                     @Override
@@ -124,15 +121,21 @@ public class EventActivity extends AppCompatActivity {
                 startActivity(mainActivity);
                 return true;
             case R.id.menu_activity_two:
-                Intent prochainementActivity = new Intent(this,ProchainementActivity.class);
-                startActivity(prochainementActivity);
+                //Intent prochainementActivity = new Intent(this,ProchainementActivity.class);
+                //startActivity(prochainementActivity);
+                Toast.makeText(this.getApplicationContext(), "En cours de développement.",
+                        Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.menu_activity_three:
-                Intent eventActivity = new Intent(this,EventActivity.class);
-                startActivity(eventActivity);
+                //Intent eventActivity = new Intent(this,EventActivity.class);
+                //startActivity(eventActivity);
+                Toast.makeText(this.getApplicationContext(),"En cours de développement",
+                        Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.menu_settings:
                 // Comportement du bouton "Paramètres"
+                Toast.makeText(this.getApplicationContext(),"En cours de développement",
+                        Toast.LENGTH_SHORT).show();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

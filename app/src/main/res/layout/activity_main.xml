@@ -20,7 +20,7 @@
         android:layout_weight="1"
         android:layout_height="fill_parent"
         android:layout_marginTop="0dp"
-        class="com.alexismargueritte.appycinema.ListFragment" />
+        class="com.alexismargueritte.appycinema.fragments.ListFragment" />
     </LinearLayout>
         <!--  Layout 2 for 2nd Screen -->
 
@@ -34,7 +34,7 @@
         android:layout_width="fill_parent"
         android:layout_weight="1"
         android:layout_height="fill_parent"
-        class="com.alexismargueritte.appycinema.DetailsFragment" >
+        class="com.alexismargueritte.appycinema.fragments.DetailsFragment" >
     </fragment>
 
     </LinearLayout>

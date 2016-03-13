@@ -46,12 +46,15 @@ public class CustomListAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        if (inflater == null)
+        if (inflater == null){
             inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        if (convertView == null)
+        }
+        if (convertView == null) {
             convertView = inflater.inflate(R.layout.list, null);
-        if (imageLoader == null)
+        }
+        if (imageLoader == null){
             imageLoader = AppController.getInstance().getImageLoader();
+        }
         NetworkImageView thumbNail = (NetworkImageView) convertView
                 .findViewById(R.id.thumbnail);
         TextView title = (TextView) convertView.findViewById(R.id.title);

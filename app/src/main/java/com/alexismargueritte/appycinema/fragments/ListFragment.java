@@ -1,4 +1,4 @@
-package com.alexismargueritte.appycinema;
+package com.alexismargueritte.appycinema.fragments;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -7,26 +7,29 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class ListFragment extends Fragment {
+import com.alexismargueritte.appycinema.R;
 
-    private OnItemSelectedListener listener;
+public class ListFragment extends Fragment {
 
     public ListFragment() {
         // Required empty public constructor
     }
 
     @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_list,
-                container, false);
 
-        return view;
+        return inflater.inflate(R.layout.fragment_list,
+                container, false);
     }
 
     public interface OnItemSelectedListener {
         public void onRssItemSelected(String link);
     }
-
 
 }

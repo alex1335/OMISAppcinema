@@ -2,19 +2,18 @@ package com.alexismargueritte.appycinema.model;
 
 
 import org.json.JSONArray;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 
 public class Movie {
-    private String title, thumbnailUrl, year, realisateur, genre, synopsis, path;
+    private String title, thumbnailUrl, year, realisateur, genre, synopsis;
     private JSONArray listMedias;
 
     public Movie() {
     }
 
     public Movie(String name, String thumbnailUrl, String year, String realisateur,
-                 String genre, String synopsis, JSONArray listMedias, String path) {
+                 String genre, String synopsis, JSONArray listMedias) {
         this.title = name;
         this.thumbnailUrl = thumbnailUrl;
         this.year = year;
@@ -22,7 +21,6 @@ public class Movie {
         this.genre = genre;
         this.synopsis = synopsis;
         this.listMedias = listMedias;
-        this.path = path;
     }
 
     public String getTitle() {
@@ -87,9 +85,5 @@ public class Movie {
         } else {
             return (String) listpath.get(i);
         }
-    }
-
-    public void setPath(String path) {
-        this.path = path;
     }
 }
